@@ -304,6 +304,66 @@
       text-transform: uppercase;
     }
 
+    .music-button {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 50;
+      width: 64px;
+      height: 64px;
+      border: 1px solid rgba(255, 226, 166, 0.72);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 50%, #573414 0 7px, transparent 8px),
+        conic-gradient(from 90deg, #f5d27a, #c89234, #fff2bd, #9d6823, #f5d27a);
+      box-shadow:
+        0 14px 34px rgba(48, 28, 10, 0.32),
+        inset 0 0 0 7px rgba(255, 248, 235, 0.18);
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .music-button::before {
+      content: "";
+      position: absolute;
+      inset: 9px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 248, 235, 0.55);
+    }
+
+    .music-button::after {
+      content: "♪";
+      position: relative;
+      z-index: 1;
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(255, 248, 235, 0.92);
+      color: var(--brown);
+      font-size: 18px;
+      font-weight: 900;
+      box-shadow: 0 4px 10px rgba(40, 22, 8, 0.22);
+    }
+
+    .music-button.playing {
+      animation: spin 3.2s linear infinite;
+    }
+
+    .music-button.playing::after {
+      content: "❚❚";
+      font-size: 11px;
+      letter-spacing: -1px;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
     @keyframes rise {
       from { opacity: 0; transform: translateY(18px); }
       to { opacity: 1; transform: translateY(0); }
@@ -324,8 +384,13 @@
       .section-title { font-size: 29px; }
       .countdown { gap: 6px; }
       .time { padding: 12px 4px; }
+      .music-button {
+        width: 58px;
+        height: 58px;
+        right: 14px;
+        bottom: 14px;
+      }
     }
-
 
     @media (min-width: 680px) {
       .page { padding: 22px 18px 42px; }
@@ -444,6 +509,10 @@
     </section>
   </main>
 
+  <audio id="backgroundMusic" src="music.mp3" loop preload="auto"></audio>
+
+  <button class="music-button" id="musicButton" type="button" aria-label="Музыканы қосу немесе өшіру"></button>
+
   <script>
     const eventDate = new Date("2026-07-25T12:00:00+05:00");
 
@@ -471,6 +540,32 @@
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
+
+    const music = document.getElementById("backgroundMusic");
+    const musicButton = document.getElementById("musicButton");
+
+    music.volume = 0.55;
+
+    musicButton.addEventListener("click", async () => {
+      if (music.paused) {
+        try {
+          await music.play();
+          musicButton.classList.add("playing");
+          musicButton.setAttribute("aria-label", "Музыканы өшіру");
+        } catch (error) {
+          console.log("Audio play was blocked:", error);
+        }
+      } else {
+        music.pause();
+        musicButton.classList.remove("playing");
+        musicButton.setAttribute("aria-label", "Музыканы қосу");
+      }
+    });
+
+    music.addEventListener("ended", () => {
+      musicButton.classList.remove("playing");
+      musicButton.setAttribute("aria-label", "Музыканы қосу");
+    });
   </script>
 </body>
 </html>
