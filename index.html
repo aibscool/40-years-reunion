@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>40 жылдық кездесу | Ғани Мұратбаев мектебі</title>
+  <meta name="description" content="Ғани Мұратбаев атындағы орта мектеп түлектерінің 40 жылдық кездесуіне шақыру." />
+
+  <style>
+    :root {
+      --bg: #f7f1e8;
+      --card: rgba(255, 255, 255, 0.78);
+      --text: #2f261d;
+      --muted: #725f4d;
+      --gold: #b8842f;
+      --gold-dark: #7b521c;
+      --line: rgba(184, 132, 47, 0.28);
+      --shadow: 0 20px 55px rgba(70, 44, 18, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255, 227, 170, 0.7), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(184, 132, 47, 0.23), transparent 35%),
+        linear-gradient(145deg, #fffaf1 0%, var(--bg) 45%, #efe0ca 100%);
+    }
+
+    .page {
+      width: min(100%, 760px);
+      margin: 0 auto;
+      padding: 22px 16px 34px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 96vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-radius: 32px;
+      padding: 34px 20px;
+      box-shadow: var(--shadow);
+      background:
+        linear-gradient(rgba(44, 32, 21, 0.52), rgba(44, 32, 21, 0.72)),
+        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80") center/cover;
+      color: #fff8ec;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(255, 233, 185, 0.55);
+      border-radius: 24px;
+      pointer-events: none;
+    }
+
+    .badge {
+      position: relative;
+      width: fit-content;
+      margin: 0 auto 24px;
+      padding: 9px 16px;
+      border: 1px solid rgba(255, 233, 185, 0.55);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.13);
+      backdrop-filter: blur(8px);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      position: relative;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(42px, 13vw, 82px);
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      text-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    }
+
+    .subtitle {
+      position: relative;
+      margin: 22px auto 0;
+      max-width: 560px;
+      font-size: clamp(19px, 5vw, 28px);
+      line-height: 1.35;
+      font-weight: 600;
+    }
+
+    .years {
+      position: relative;
+      margin-top: 14px;
+      font-size: 18px;
+      color: #ffe4ad;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .school {
+      position: relative;
+      margin: 24px auto 0;
+      max-width: 520px;
+      color: rgba(255, 248, 236, 0.9);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .scroll-hint {
+      position: relative;
+      margin-top: 34px;
+      font-size: 13px;
+      color: rgba(255, 248, 236, 0.72);
+    }
+
+    .section {
+      margin-top: 18px;
+      padding: 24px 20px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 14px 35px rgba(80, 49, 19, 0.08);
+    }
+
+    .section h2 {
+      margin: 0 0 16px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+      color: var(--gold-dark);
+    }
+
+    .info-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .info {
+      padding: 16px;
+      border-radius: 22px;
+      background: rgba(255, 250, 241, 0.82);
+      border: 1px solid rgba(184, 132, 47, 0.22);
+    }
+
+    .label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .value {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .poem {
+      margin: 0;
+      padding: 20px;
+      border-left: 4px solid var(--gold);
+      border-radius: 18px;
+      background: rgba(255, 250, 241, 0.8);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 19px;
+      line-height: 1.75;
+      white-space: pre-line;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 52px;
+      padding: 14px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 16px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), #d8a24c);
+      color: #fff;
+      box-shadow: 0 12px 25px rgba(184, 132, 47, 0.32);
+    }
+
+    .btn-secondary {
+      background: #fff8ec;
+      color: var(--gold-dark);
+      border: 1px solid var(--line);
+    }
+
+    .footer {
+      padding: 24px 6px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    @media (min-width: 620px) {
+      .actions {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="badge">Шақыру</div>
+      <h1>40 жылдық<br />кездесу</h1>
+      <div class="subtitle">Мектеп бітіргенімізге 40 жыл</div>
+      <div class="years">1986 — 2026</div>
+      <p class="school">Ғани Мұратбаев атындағы орта мектептің түлектері</p>
+      <div class="scroll-hint">Толық ақпарат төменде</div>
+    </section>
+
+    <section class="section">
+      <h2>Құрметті түлектер!</h2>
+      <p class="poem">Қырық көктем, қырық күз өтті арадан,
+Көкіректе сайрап тұр, алып арман.
+Жиналып бас қосайық, еске алысып,
+Күндерді сағынышпен, артта қалған.</p>
+    </section>
+
+    <section class="section">
+      <h2>Кездесу ақпараты</h2>
+
+      <div class="info-grid">
+        <div class="info">
+          <span class="label">Өтетін күні</span>
+          <div class="value">25 шілде 2026 ж.</div>
+        </div>
+
+        <div class="info">
+          <span class="label">Басталуы</span>
+          <div class="value">Сағат 12:00</div>
+        </div>
+
+        <div class="info">
+          <span class="label">Қала</span>
+          <div class="value">Алматы қаласы</div>
+        </div>
+
+        <div class="info">
+          <span class="label">Мекенжай</span>
+          <div class="value">“Zhaily sai resort” демалыс аймағы</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=Zhaily%20sai%20resort%20Almaty" target="_blank" rel="noopener">
+          Картаны ашу
+        </a>
+
+        <a class="btn btn-secondary" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%D0%9C%D0%B5%D0%BA%D1%82%D0%B5%D0%BF%20%D0%B1%D1%96%D1%82%D1%96%D1%80%D0%B3%D0%B5%D0%BD%D1%96%D0%BC%D1%96%D0%B7%D0%B3%D0%B5%2040%20%D0%B6%D1%8B%D0%BB&dates=20260725T070000Z/20260725T120000Z&details=%D2%92%D0%B0%D0%BD%D0%B8%20%D0%9C%D2%B1%D1%80%D0%B0%D1%82%D0%B1%D0%B0%D0%B5%D0%B2%20%D0%B0%D1%82%D1%8B%D0%BD%D0%B4%D0%B0%D2%93%D1%8B%20%D0%BE%D1%80%D1%82%D0%B0%20%D0%BC%D0%B5%D0%BA%D1%82%D0%B5%D0%BF%D1%82%D1%96%D2%A3%20%D1%82%D2%AF%D0%BB%D0%B5%D0%BA%D1%82%D0%B5%D1%80%D1%96.%20%D0%9C%D0%B5%D0%BA%D1%82%D0%B5%D0%BF%20%D0%B1%D1%96%D1%82%D1%96%D1%80%D0%B3%D0%B5%D0%BD%D1%96%D0%BC%D1%96%D0%B7%D0%B3%D0%B5%2040%20%D0%B6%D1%8B%D0%BB.&location=Zhaily%20sai%20resort%2C%20Almaty" target="_blank" rel="noopener">
+          Календарға қосу
+        </a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Ізгі тілекпен,<br />
+      Ғани Мұратбаев атындағы орта мектеп түлектері
+    </footer>
+  </main>
+</body>
+</html>
