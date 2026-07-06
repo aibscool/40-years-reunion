@@ -42,14 +42,14 @@
 
     .hero {
       position: relative;
-      min-height: 100svh;
+      min-height: 84svh;
       overflow: hidden;
       border-radius: 38px;
       color: #fff8e8;
       box-shadow: var(--shadow);
       background:
         linear-gradient(180deg, rgba(18, 13, 9, 0.12), rgba(18, 13, 9, 0.86)),
-        url("https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1800&q=88") center/cover;
+        url("https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1800&q=88") center 38%/cover;
       isolation: isolate;
     }
 
@@ -75,7 +75,7 @@
     .hero-inner {
       position: relative;
       z-index: 1;
-      min-height: calc(100vh - 24px);
+      min-height: 84svh;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -191,8 +191,8 @@
       border: 1px solid rgba(200, 146, 52, 0.24);
       background: linear-gradient(135deg, rgba(255, 250, 241, 0.96), rgba(245, 228, 196, 0.72));
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 19px;
-      line-height: 1.8;
+      font-size: 18px;
+      line-height: 1.72;
       white-space: pre-line;
       box-shadow: inset 4px 0 0 rgba(200, 146, 52, 0.9);
     }
@@ -309,16 +309,21 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    
     @media (max-width: 430px) {
-      .hero-inner {padding:16px;}
-      .school{margin-bottom:12px;}
-      .graduates{margin-bottom:16px;}
-      h1{margin-top:2px;}
-      .date-card{font-size:15px;line-height:1.45;}
-      .section{padding:20px 16px;}
-      .countdown{gap:6px;}
-      .time{padding:12px 4px;}
+      .hero { min-height: 82svh; }
+      .hero-inner { min-height: 82svh; padding: 15px; }
+      .center { padding: 14px 0 12px; }
+      .ornament { margin-bottom: 12px; font-size: 16px; }
+      .school { font-size: clamp(21px, 6vw, 30px); margin-bottom: 10px; }
+      .graduates { font-size: 15px; margin-bottom: 12px; }
+      h1 { font-size: clamp(44px, 14vw, 62px); }
+      .years { margin-top: 14px; padding: 8px 14px; font-size: 13px; }
+      .date-card { padding: 12px 14px; font-size: 14px; }
+      .poem { font-size: 17px; line-height: 1.68; padding: 18px 16px; }
+      .section { padding: 20px 16px; }
+      .section-title { font-size: 29px; }
+      .countdown { gap: 6px; }
+      .time { padding: 12px 4px; }
     }
 
 
@@ -364,10 +369,17 @@
         Осы айтулы күнге орай сағынышқа толы кездесуге шақырамыз.
       </p>
 
-      <p class="poem">Қырық көктем, қырық күз өтті арадан,
-Көкіректе сайрап тұр, алып арман.
-Жиналып бас қосайық, еске алысып,
-Күндерді сағынышпен, артта қалған.</p>
+      <p class="poem">Қырық көктем,
+қырық күз өтті арадан,
+
+Көкіректе сайрап тұр,
+алып арман.
+
+Жиналып бас қосайық,
+еске алысып,
+
+Күндерді сағынышпен,
+артта қалған.</p>
     </section>
 
     <section class="section">
