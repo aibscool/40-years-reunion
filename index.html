@@ -305,64 +305,103 @@
     }
 
 
-    .music-btn {
-      position: fixed;
-      right: 16px;
-      bottom: 16px;
-      z-index: 50;
-      width: 54px;
-      height: 54px;
-      border: 1px solid rgba(255, 226, 166, 0.65);
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      color: #fff;
-      box-shadow: 0 14px 34px rgba(87, 52, 20, 0.28);
-      font-size: 22px;
-      cursor: pointer;
+
+    .music-player {
+      width: min(100%, 580px);
+      margin: 12px auto 0;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 226, 166, 0.52);
+      background: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(14px);
       display: flex;
       align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(12px);
-    }
-
-    .music-btn.playing {
-      animation: pulseMusic 1.4s ease-in-out infinite;
-    }
-
-    @keyframes pulseMusic {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.07); }
-    }
-
-    .music-hint {
-      position: fixed;
-      right: 78px;
-      bottom: 22px;
-      z-index: 50;
-      padding: 9px 12px;
-      border-radius: 999px;
-      background: rgba(36, 24, 16, 0.74);
+      justify-content: space-between;
+      gap: 12px;
       color: #fff8e8;
-      font-size: 12px;
-      font-weight: 750;
-      backdrop-filter: blur(10px);
-      opacity: 0.92;
+      animation: rise 0.9s ease 0.64s both;
     }
 
-    @media (max-width: 430px) {
-      .music-btn {
-        right: 14px;
-        bottom: 14px;
-        width: 50px;
-        height: 50px;
-        font-size: 20px;
-      }
+    .music-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      text-align: left;
+    }
 
-      .music-hint {
-        right: 72px;
-        bottom: 20px;
-        font-size: 11px;
-      }
+    .music-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      color: #5a3719;
+      background: linear-gradient(135deg, #ffe8ad, var(--gold-light));
+      box-shadow: 0 10px 24px rgba(70, 38, 12, 0.22);
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .music-text {
+      display: block;
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .music-subtext {
+      display: block;
+      margin-top: 2px;
+      color: rgba(255, 248, 232, 0.72);
+      font-size: 11px;
+      line-height: 1.2;
+    }
+
+    .music-toggle {
+      border: 0;
+      min-width: 74px;
+      height: 38px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: white;
+      font-size: 13px;
+      font-weight: 950;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(87, 52, 20, 0.28);
+    }
+
+    .equalizer {
+      display: none;
+      align-items: end;
+      gap: 3px;
+      height: 18px;
+      margin-left: 2px;
+    }
+
+    .equalizer span {
+      width: 3px;
+      border-radius: 999px;
+      background: #ffe4ad;
+      animation: equalize 0.8s ease-in-out infinite;
+    }
+
+    .equalizer span:nth-child(1) { height: 7px; animation-delay: 0s; }
+    .equalizer span:nth-child(2) { height: 14px; animation-delay: 0.12s; }
+    .equalizer span:nth-child(3) { height: 10px; animation-delay: 0.24s; }
+    .equalizer span:nth-child(4) { height: 16px; animation-delay: 0.36s; }
+
+    .music-player.playing .equalizer {
+      display: flex;
+    }
+
+    @keyframes equalize {
+      0%, 100% { transform: scaleY(0.55); opacity: 0.65; }
+      50% { transform: scaleY(1); opacity: 1; }
     }
 
 
@@ -370,6 +409,32 @@
       from { opacity: 0; transform: translateY(18px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    
+    .music-btn{
+      position:fixed;
+      top:18px;
+      right:18px;
+      z-index:9999;
+      width:54px;
+      height:54px;
+      border:none;
+      border-radius:50%;
+      background:rgba(255,248,235,.82);
+      backdrop-filter:blur(10px);
+      box-shadow:0 8px 24px rgba(0,0,0,.18);
+      cursor:pointer;
+      font-size:24px;
+      transition:.25s;
+    }
+    .music-btn.playing{
+      animation:spin 4s linear infinite;
+    }
+    @keyframes spin{
+      from{transform:rotate(0deg)}
+      to{transform:rotate(360deg)}
+    }
+
 
     @media (max-width: 430px) {
       .hero { min-height: 82svh; }
@@ -404,6 +469,14 @@
 </head>
 
 <body>
+
+<button id="musicBtn" class="music-btn" aria-label="Музыка">🎵</button>
+
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+
   <main class="page">
     <section class="hero">
       <div class="hero-inner">
@@ -417,9 +490,28 @@
           <div class="years">1986 — 2026</div>
         </div>
 
-        <div class="date-card">
-          25 шілде 2026 ж. · 12:00<br />
-          Алматы қаласы · Zhaily Say Resort
+        <div>
+          <div class="date-card">
+            25 шілде 2026 ж. · 12:00<br />
+            Алматы қаласы · Zhaily Say Resort
+          </div>
+
+          <audio id="bgMusic" src="music.mp3" loop preload="auto"></audio>
+
+          <div class="music-player" id="musicPlayer">
+            <div class="music-left">
+              <div class="music-icon">♪</div>
+              <div>
+                <span class="music-text" id="musicTitle">Әуенді қосу</span>
+                <span class="music-subtext" id="musicSubtext">Кеш атмосферасы үшін</span>
+              </div>
+              <div class="equalizer" aria-hidden="true">
+                <span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+
+            <button class="music-toggle" id="musicBtn" type="button">Қосу</button>
+          </div>
         </div>
       </div>
     </section>
@@ -505,43 +597,35 @@
       </div>
     </section>
   </main>
-
-
-  <audio id="bgMusic" src="music.mp3" loop preload="auto"></audio>
-  <div class="music-hint" id="musicHint">Музыка</div>
-  <button class="music-btn" id="musicBtn" type="button" aria-label="Музыканы қосу">♪</button>
-
-
   <script>
 
     const music = document.getElementById("bgMusic");
     const musicBtn = document.getElementById("musicBtn");
-    const musicHint = document.getElementById("musicHint");
+    const musicPlayer = document.getElementById("musicPlayer");
+    const musicTitle = document.getElementById("musicTitle");
+    const musicSubtext = document.getElementById("musicSubtext");
 
     musicBtn.addEventListener("click", async () => {
       try {
         if (music.paused) {
           await music.play();
-          musicBtn.textContent = "Ⅱ";
-          musicBtn.classList.add("playing");
-          musicHint.textContent = "Ойналып тұр";
+          musicBtn.textContent = "Тоқтату";
+          musicTitle.textContent = "Әуен ойнап тұр";
+          musicSubtext.textContent = "Қайта бассаңыз тоқтайды";
+          musicPlayer.classList.add("playing");
         } else {
           music.pause();
-          musicBtn.textContent = "♪";
-          musicBtn.classList.remove("playing");
-          musicHint.textContent = "Музыка";
+          musicBtn.textContent = "Қосу";
+          musicTitle.textContent = "Әуенді қосу";
+          musicSubtext.textContent = "Кеш атмосферасы үшін";
+          musicPlayer.classList.remove("playing");
         }
       } catch (e) {
-        musicHint.textContent = "music.mp3 жоқ";
+        musicBtn.textContent = "Файл жоқ";
+        musicTitle.textContent = "music.mp3 табылмады";
+        musicSubtext.textContent = "Файлды index.html қасына жүктеңіз";
       }
     });
-
-    setTimeout(() => {
-      if (musicHint && music.paused) {
-        musicHint.style.opacity = "0";
-        musicHint.style.transition = "opacity 0.5s ease";
-      }
-    }, 4200);
 
     const eventDate = new Date("2026-07-25T12:00:00+05:00");
 
@@ -569,6 +653,35 @@
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
-  </script>
+  
+const music=document.getElementById("bgMusic");
+const btn=document.getElementById("musicBtn");
+
+async function toggleMusic(){
+  try{
+    if(music.paused){
+      await music.play();
+      btn.classList.add("playing");
+    }else{
+      music.pause();
+      btn.classList.remove("playing");
+    }
+  }catch(e){
+    console.log(e);
+  }
+}
+
+btn.addEventListener("click",toggleMusic);
+
+document.addEventListener("click",async()=>{
+  if(music.paused){
+    try{
+      await music.play();
+      btn.classList.add("playing");
+    }catch(e){}
+  }
+},{once:true});
+
+</script>
 </body>
 </html>
